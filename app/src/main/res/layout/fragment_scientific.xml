@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:weightSum="5"
+    tools:context=".NumericFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/fact"
+            style="@style/Button"
+            android:text="@string/fact"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/sqrt"
+            style="@style/Button"
+            android:text="@string/sqrt"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/percent"
+            style="@style/Button"
+            android:text="@string/percent"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/sin"
+            style="@style/Button"
+            android:text="@string/sin"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/cos"
+            style="@style/Button"
+            android:text="@string/cos"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/tan"
+            style="@style/Button"
+            android:text="@string/tan"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/in"
+            style="@style/Button"
+            android:text="@string/in"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/log"
+            style="@style/Button"
+            android:text="@string/log"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/inverse"
+            style="@style/Button"
+            android:text="@string/inverse"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/ex"
+            style="@style/Button"
+            android:text="@string/ex"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/square"
+            style="@style/Button"
+            android:text="@string/square"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/power"
+            style="@style/Button"
+            android:text="@string/power"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="2dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/abs"
+            style="@style/Button"
+            android:text="@string/abs"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/pi"
+            style="@style/Button"
+            android:text="@string/pi"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/exp"
+            style="@style/Button"
+            android:text="@string/exp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+
+</LinearLayout>

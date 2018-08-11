@@ -1,0 +1,58 @@
+<resources>
+    <string-array name="list_unit">
+        <item>Length</item>
+        <item>Temperature</item>
+        <item>Weight</item>
+        <item>Volume</item>
+        <item>Area</item>
+    </string-array>
+    <string name="app_name">Calculator</string>
+
+    <string name="_0">0</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+
+    <string name="multiply">X</string>
+    <string name="divide">/</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+
+    <string name="parenthesis">( )</string>
+    <string name="clear">C</string>
+    <string name="decimal">.</string>
+    <string name="equal_to">=</string>
+    <string name="sign">+/-</string>
+
+    <string name="fact">X!</string>
+    <string name="sqrt">sqrt</string>
+    <string name="percent">%</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="in">In</string>
+    <string name="log">log</string>
+    <string name="inverse">X<sup>-1</sup></string>
+    <string name="ex">e<sup>x</sup></string>
+    <string name="square">X<sup>2</sup></string>
+    <string name="power">Y<sup>x</sup></string>
+    <string name="abs">|X|</string>
+    <string name="pi">Pi</string>
+    <string name="exp">e</string>
+    <string name="hello">Hello</string>
+    <string name="clear_history">Clear</string>
+    <string name="title_activity_convertor">ConvertorActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="copy">Copy</string>
+    <string name="history">History</string>
+    <string name="converter">Converter</string>
+    <string name="enter_the_unit">Enter the unit</string>
+    <string name="ok">Ok</string>
+</resources>
