@@ -182,13 +182,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
                 databaseHistory.insertData(Integer.toString(index), text, newText);
             }
         }
-        if (length <= 15) {
-            textView.setTextSize(40);
-        } else if (length <= 20) {
-            textView.setTextSize(30);
-        } else {
-            textView.setTextSize(25);
-        }
+        setTextSize(length);
     }
 
 //    @Override
@@ -234,50 +228,21 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
                     Toast.makeText(getApplicationContext(), "There is more then 100 words", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if (text.length() <= 15) {
-                    textView.setTextSize(40);
-                } else if (text.length() <= 20) {
-                    textView.setTextSize(30);
-                } else {
-                    textView.setTextSize(25);
-                }
                 textView.setText(text);
+                setTextSize(text.length());
                 Toast.makeText(getApplicationContext(), "Text Pasted",
                         Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-    /*    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
+    public void setTextSize(int length) {
+        if (length <= 15) {
+            textView.setTextSize(40);
+        } else if (length <= 20) {
+            textView.setTextSize(30);
+        } else {
+            textView.setTextSize(25);
+        }
     }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        Intent intent = new Intent(getApplicationContext(), ConverterActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.left_in, R.anim.left_out);
-        return true;
-    }*/
 }
