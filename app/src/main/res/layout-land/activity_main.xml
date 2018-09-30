@@ -25,39 +25,39 @@
         android:layout_weight="1"
         android:weightSum="3"
         >
+
         <Button
             style="@style/Button"
-            android:id="@+id/history"
+            android:id="@+id/scientific"
             android:layout_gravity="center"
-            android:text="@string/history"
-            android:drawableStart="@drawable/ic_history_black_24dp"
-            android:drawableLeft="@drawable/ic_history_black_24dp"
-            android:paddingStart="40dp"
-            android:paddingLeft="40dp"
+            android:text="@string/standard"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
             tools:ignore="RtlSymmetry" />
         <Button
             style="@style/Button"
             android:id="@+id/copy"
             android:layout_gravity="center"
+            android:text="@string/copy"
             android:drawableStart="@drawable/ic_copy"
             android:drawableLeft="@drawable/ic_copy"
-            android:text="@string/copy"
-            android:paddingStart="40dp"
-            android:paddingLeft="40dp"
-            tools:ignore="RtlSymmetry" />
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            tools:ignore="RtlSymmetry"
+            />
         <Button
             style="@style/Button"
-            android:id="@+id/converter"
+            android:id="@+id/paste"
             android:layout_gravity="center"
-            android:text="@string/converter"
+            android:text="@string/paste"
             />
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6"
-        android:weightSum="7">
+        android:weightSum="7"
+        android:baselineAligned="false">
         <FrameLayout
             android:layout_height="match_parent"
             android:id="@+id/scientific_container"
@@ -70,6 +70,5 @@
             android:layout_width="0dp"
             android:layout_weight="4"/>
     </LinearLayout>
-
 
 </LinearLayout>

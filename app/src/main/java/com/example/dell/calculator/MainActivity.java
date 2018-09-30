@@ -4,22 +4,25 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GestureDetectorCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements FragmentListener, View.OnClickListener, GestureDetector.OnGestureListener {
-    GestureDetectorCompat detector;
-    Button btnShowHistory, btnCopy, btnConverter;
+import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
+
+public class MainActivity extends AppCompatActivity implements FragmentListener, View.OnClickListener {
+    Button btnScientific, btnCopy, btnPaste;
     TextView textView;
     Equation equation;
     FragmentManager fm;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
     DatabaseHistory databaseHistory;
     int index = 0;
     FrameLayout frameLayout;
+    ClipboardManager clipboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +39,44 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
         initialize();
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.history:
+                intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.move_in, R.anim.fade_out);
+                break;
+            case R.id.converter:
+                intent = new Intent(getApplicationContext(), ConverterActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                break;
+        }
+        return true;
+    }
+
     private void initialize() {
-        frameLayout =findViewById(R.id.number_container);
-        btnShowHistory = findViewById(R.id.history);
+        frameLayout = findViewById(R.id.number_container);
+        btnScientific = findViewById(R.id.scientific);
         btnCopy = findViewById(R.id.copy);
-        btnConverter = findViewById(R.id.converter);
+        btnPaste = findViewById(R.id.paste);
         databaseHistory = new DatabaseHistory(getApplicationContext());
         index = databaseHistory.getMaxIndex();
         textView = findViewById(R.id.text);
         fm = getSupportFragmentManager();
-        btnShowHistory.setOnClickListener(this);
+        btnScientific.setOnClickListener(this);
         btnCopy.setOnClickListener(this);
-        btnConverter.setOnClickListener(this);
-
+        btnPaste.setOnClickListener(this);
         if (findViewById(R.id.activity_main_portrait) != null) {
             addNumber();
         } else if (findViewById(R.id.activity_main_landscape) != null) {
@@ -55,13 +84,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
             addScientific();
         }
         equation = new Equation();
-        detector =new GestureDetectorCompat(getApplicationContext(),this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        textView = null;
+//        detector =new GestureDetectorCompat(getApplicationContext(),this);
     }
 
     void addNumber() {
@@ -126,11 +149,11 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
             } else if (op != 'N') {
                 textView.setText(equation.operationAppend(op, newText));
             } else if (!spacialOperator.equals("NOT")) {
-               if(spacialOperator.equals("converter")){
-                   Intent intent = new Intent(getApplicationContext(), ConverterActivity.class);
-                   startActivity(intent);
-                   overridePendingTransition(R.anim.left_in, R.anim.left_out);
-               }
+                if (spacialOperator.equals("converter")) {
+                    Intent intent = new Intent(getApplicationContext(), ConverterActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.left_in, R.anim.left_out);
+                }
                 textView.setText(equation.spacialOperatorAppend(spacialOperator, newText));
             } else if (!scientificOperator.equals("NOT")) {
                 if (equation.scientificOperatorAppend(scientificOperator, newText).contains("error")) {
@@ -169,20 +192,25 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        detector.onTouchEvent(event);
-        return super.onTouchEvent(event);
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        detector.onTouchEvent(event);
+//        return super.onTouchEvent(event);
+//    }
+
+    boolean isPortrait() {
+        return (getResources().getConfiguration().orientation == ORIENTATION_PORTRAIT);
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent;
+        clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         switch (v.getId()) {
-            case R.id.history:
-                intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.move_in, R.anim.fade_out);
+            case R.id.scientific:
+                if (isPortrait())
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                else
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 break;
             case R.id.copy:
                 String copyText = textView.getText().toString();
@@ -190,21 +218,38 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
                     copyText = copyText.replace("=", "");
                 }
                 if (!copyText.equals("")) {
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText("equation", copyText);
                     if (clipboard != null) {
                         clipboard.setPrimaryClip(clip);
+                        Toast.makeText(getApplicationContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
-            case R.id.converter:
-                intent = new Intent(getApplicationContext(), ConverterActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.left_in, R.anim.left_out);
+            case R.id.paste:
+                ClipData abc = clipboard.getPrimaryClip();
+                if (abc == null)
+                    return;
+                ClipData.Item item = abc.getItemAt(0);
+                String text = item.getText().toString();
+                if (text.length() > 100) {
+                    Toast.makeText(getApplicationContext(), "There is more then 100 words", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                if (text.length() <= 15) {
+                    textView.setTextSize(40);
+                } else if (text.length() <= 20) {
+                    textView.setTextSize(30);
+                } else {
+                    textView.setTextSize(25);
+                }
+                textView.setText(text);
+                Toast.makeText(getApplicationContext(), "Text Pasted",
+                        Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 
-    @Override
+    /*    @Override
     public boolean onDown(MotionEvent e) {
         return false;
     }
@@ -235,5 +280,5 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
         startActivity(intent);
         overridePendingTransition(R.anim.left_in, R.anim.left_out);
         return true;
-    }
+    }*/
 }

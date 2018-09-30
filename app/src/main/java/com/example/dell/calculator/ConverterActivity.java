@@ -1,6 +1,7 @@
 package com.example.dell.calculator;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,6 +25,10 @@ public class ConverterActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setTitle("Converter");
+
         unitSpr=findViewById(R.id.unit);
         firstUnitSpr =findViewById(R.id.from_unit);
         secondUnitSpr =findViewById(R.id.to_unit);
