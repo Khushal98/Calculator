@@ -1,4 +1,4 @@
-package com.example.dell.calculator;
+package com.example.dell.calculator.activity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,9 +20,16 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dell.calculator.DatabaseHistory;
+import com.example.dell.calculator.solution.Equation;
+import com.example.dell.calculator.fragment.FragmentListener;
+import com.example.dell.calculator.fragment.NumericFragment;
+import com.example.dell.calculator.R;
+import com.example.dell.calculator.fragment.ScientificFragment;
+
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 
-public class MainActivity extends AppCompatActivity implements FragmentListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements FragmentListener, View.OnClickListener, TextWatcher {
     Button btnScientific, btnCopy, btnPaste;
     TextView textView;
     Equation equation;
@@ -72,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
         databaseHistory = new DatabaseHistory(getApplicationContext());
         index = databaseHistory.getMaxIndex();
         textView = findViewById(R.id.text);
+        textView.addTextChangedListener(this);
         fm = getSupportFragmentManager();
         btnScientific.setOnClickListener(this);
         btnCopy.setOnClickListener(this);
@@ -182,8 +192,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
                 databaseHistory.insertData(Integer.toString(index), text, newText);
             }
         }
-        setTextSize(length);
-    }
+   }
 
 //    @Override
 //    public boolean onTouchEvent(MotionEvent event) {
@@ -229,8 +238,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
                     break;
                 }
                 textView.setText(text);
-                setTextSize(text.length());
-                Toast.makeText(getApplicationContext(), "Text Pasted",
+               Toast.makeText(getApplicationContext(), "Text Pasted",
                         Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -244,5 +252,20 @@ public class MainActivity extends AppCompatActivity implements FragmentListener,
         } else {
             textView.setTextSize(25);
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        int i=0;
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        int i=0;
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        setTextSize(s.length());
     }
 }

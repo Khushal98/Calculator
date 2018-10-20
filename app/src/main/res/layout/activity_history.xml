@@ -6,7 +6,7 @@
     android:background="#000"
     android:id="@+id/history_layout"
     android:orientation="vertical"
-    tools:context=".HistoryActivity">
+    tools:context=".activity.HistoryActivity">
 
     <Button
         android:layout_width="wrap_content"

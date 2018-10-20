@@ -1,4 +1,4 @@
-package com.example.dell.calculator;
+package com.example.dell.calculator.fragment;
 
 import android.os.Bundle;
 

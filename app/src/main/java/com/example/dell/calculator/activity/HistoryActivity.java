@@ -1,4 +1,4 @@
-package com.example.dell.calculator;
+package com.example.dell.calculator.activity;
 
 
 import android.app.Activity;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.example.dell.calculator.DatabaseHistory;
+import com.example.dell.calculator.R;
 
 public class HistoryActivity extends Activity implements View.OnClickListener {
     String[] equation;
@@ -52,8 +55,9 @@ public class HistoryActivity extends Activity implements View.OnClickListener {
         }
         int i = 0;
         while (myCursor.moveToNext()) {
-            hist[i++] =myCursor.getString(1) +""+ myCursor.getString(2);
+            hist[i++] =myCursor.getString(1) +"\n"+ myCursor.getString(2);
         }
+        myCursor.close();
         return hist;
     }
 

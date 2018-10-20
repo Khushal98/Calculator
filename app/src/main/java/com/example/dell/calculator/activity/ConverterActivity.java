@@ -1,4 +1,4 @@
-package com.example.dell.calculator;
+package com.example.dell.calculator.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.dell.calculator.R;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;

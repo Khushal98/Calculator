@@ -1,4 +1,4 @@
-package com.example.dell.calculator;
+package com.example.dell.calculator.solution;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;

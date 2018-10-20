@@ -1,5 +1,7 @@
-package com.example.dell.calculator;
+package com.example.dell.calculator.solution;
 
+
+import android.media.MediaCodec;
 
 import static java.lang.Math.E;
 import static java.lang.Math.PI;
@@ -15,7 +17,7 @@ public class Result extends Equation {
     }
 
     private String get(String equation) {
-
+        MediaCodec.CryptoInfo.Pattern pattern;
         char[] ch = equation.toCharArray();
         StringBuilder stringBuilder;
 
